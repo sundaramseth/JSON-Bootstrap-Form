@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>JSON Form</title>
+  <link rel="stylesheet" type="text/css" href="deps/opt/bootstrap.css" />
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary">
+  <b class="navbar-brand" href="#">Car Name</b>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <form></form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <hr>
+          <div id="res" class="alert"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+  <script type="text/javascript" src="deps/jquery.min.js"></script>
+  <script type="text/javascript" src="deps/underscore.js"></script>
+  <script type="text/javascript" src="deps/opt/jsv.js"></script>
+  <script type="text/javascript" src="lib/jsonform.js"></script>
+  <script type="text/javascript">
+    $('form').jsonForm({
+    "schema": {
+        //VARIANTS
+        "all_variant_check": {
+            "type": "string",
+            "title": "All variant integration is completed ?",
+            "enum": [ "Yes", "No" ],
+        },
+        "variant_name": {
+          "type": 'string',
+          "title": 'Provide the variant name List',
+          "enum": [ "First", "Second", "Third", "Fourth" ]
+        },
+        "numberof_variant_added": {
+          "type": 'number',
+          "title": 'Please specify the number of variants Added'
+        },
+        "nameof_top_variant": {
+          "type": 'string',
+          "title": 'Please specify the name of top variant',
+          "enum": [ "First Variant", "Second Variant", "Third Variant", "Fourth Variant" ]
+        },
+        "variant_features": {
+          "type": 'string',
+          "title": 'Please specify the name of variants which has features',
+          "enum": [ "First", "Second", "Third", "Fourth" ]
+        },
+        "variant_check": {
+          "type": 'string',
+          "title": 'Checked all Variants on Preview Link ?',
+          "enum": [ "Yes", "No" ]
+        },
+        "seating_type": {
+          "type": 'string',
+          "title": 'Select model seating type',
+          "enum": [ "5 Seater", "7 Seater", "Both" ]
+        },
+        //Color
+        "color": {
+            "type": "string",
+            "title": "All Color Added ?",
+            "enum": [ "Yes", "No" ]
+        },
+        "color_number": {
+            "type": "number",
+            "title": "Please specify the number of colors Added",
+        },
+        "body_roof_material": {
+          "type": 'string',
+          "title": 'Body And roof Color Material Assigned ?',
+          "enum": [ "Yes", "No" ]
+        },
+        "checked_p_link": {
+          "type": 'string',
+          "title": 'Checked on Preview Link ?',
+          "enum": [ "Yes", "No" ]
+        },
+        "checked_all_variant": {
+          "type": 'string',
+          "title": 'Checked in all variants  ?',
+          "enum": [ "Yes", "No" ]
+        },
+        //Camera
+        "camera_angel": {
+          "type": 'string',
+          "title": 'Are The Camera Angle Set For:',
+          "enum": [ "Exterior", "Interior", "BackSeat", "LastSeat", "Set for Mobile Too?" ]
+        },
+        "camera_angel_checked": {
+          "type": 'string',
+          "title": 'Are The Camera Angle Checked in all variants :',
+          "enum": [ "Exterior", "Interior", "BackSeat", "LastSeat", "Checked for Mobile Too?" ]
+        },
+        "max_min_zoom": {
+          "type": 'string',
+          "title": 'Is Min / Max Zoom Limit Set ? ',
+          "enum": [ "Yes", "No" ]
+        }
+      },
+      "form": [
+        {
+          "type":"fieldset",
+          "title":"Car Name",
+          "items":[
+            {
+              "type":"tabs",
+              "id":"navtabs",
+              "items": [
+                {
+                  "title":"VARIANTS",
+                  "type":"tab",
+                  "items":[
+                    {  
+                      "key":"all_variant_check",
+                      "type":"radios",
+                    },
+                    {  
+                      "key":"variant_name",
+                      "type":"select"
+                    },
+                    {  
+                      "key":"numberof_variant_added",
+                      "type":"number"
+                    },
+                    {  
+                      "key":"nameof_top_variant",
+                      "type":"select"
+                    },
+                    {  
+                      "key":"variant_features",
+                      "type":"select"
+                    },
+                    {  
+                      "key":"variant_check",
+                      "type":"radios"
+                    },
+                    {  
+                      "key":"seating_type",
+                      "type":"radios"
+                    }
+                  ]
+                },
+                {
+                  "title":"COLOR",
+                  "type":"tab",
+                  "items":[
+                    {  
+                      "key":"color",
+                      "type":"radios",
+                    },
+                    {  
+                      "key":"color_number",
+                      "type":"number",
+                    },
+                    {  
+                      "key":"body_roof_material",
+                      "type":"radios",
+                    },
+                    {  
+                      "key":"checked_p_link",
+                      "type":"radios",
+                    },
+                    {  
+                      "key":"checked_all_variant",
+                      "type":"radios",
+                    }
+                  ]
+                },
+                {
+                  "title":"CAMERA",
+                  "type":"tab",
+                  "items":[
+                    {  
+                      "key":"camera_angel",
+                      "type":"radios",
+                    },
+                    {  
+                      "key":"camera_angel_checked",
+                      "type":"radios",
+                    },
+                    {  
+                      "key":"max_min_zoom",
+                      "type":"radios",
+                    }
+                  ]
+                },
+              ]
+            }
+          ]
+        },
+        {
+          "type": "actions",
+          "items": [
+            {
+              "type": "submit",
+              "value": "Submit"
+            }
+          ]
+        }
+      ],
+      onSubmit: function (errors, values) {
+        if (errors) {
+          $('#res').html('<p>I beg your pardon?</p>');
+        } else {
+          $('#res').html('<p><br/>VARIANT<br/><b>Variant</b> -' + values.all_variant_check + '.' +
+            (values.variant_name ? '<br/><b>Variant Name</b> -' + values.variant_name + '.' : '') +
+            (values.numberof_variant_added ? '<br/><b>Number of variant Added</b> -' + values.numberof_variant_added + '.' : '') +
+            (values.nameof_top_variant ? '<br/><b>Name of top variant</b> -' + values.nameof_top_variant + '.' : '') +
+            (values.variant_features ? '<br/><b>Variant Feature</b> -' + values.variant_features + '.' : '') +
+            (values.variant_check ? '<br/><b>Variant Checked</b> -' + values.variant_check + '.' : '') +
+            (values.seating_type ? '<br/><b>Seating Type</b> -' + values.seating_type + '.' : '') +
+            (values.color ? '<br/><br/>COLOR<br/><b>All Color Added ?</b> -' + values.color + '.' : '') +
+            (values.color_number ? '<br/><b>Please specify the number of colors Added</b> -' + values.color_number + '.' : '') +
+            (values.body_roof_material ? '<br/><b>Body And roof Color Material Assigned ?</b> -' + values.body_roof_material + '.' : '') +
+            (values.checked_p_link ? '<br/><b>Checked on Preview Link ?</b> -' + values.checked_p_link + '.' : '') +
+            (values.checked_all_variant ? '<br/><b>Checked in all variants ?</b> -' + values.checked_all_variant + '.' : '') +
+            (values.camera_angel ? '<br/><br/>CAMERA<br/><b>Are The Camera Angle Set For:</b> -' + values.camera_angel + '.' : '') +
+            (values.camera_angel_checked ? '<br/><b>Are The Camera Angle Checked in all variants </b> -' + values.camera_angel_checked + '.' : '') +
+            (values.max_min_zoom ? '<br/><b>Is Min / Max Zoom Limit Set ?</b> -' + values.max_min_zoom + '.' : '') +
+            '</p>');
+        }
+      }
+});
+  </script>
+</body>
+</html>

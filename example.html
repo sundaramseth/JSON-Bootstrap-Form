@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>JSON Form</title>
+  <link rel="stylesheet" type="text/css" href="deps/opt/bootstrap.css" />
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary">
+  <b class="navbar-brand" href="#">Car Name</b>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <h4><b>VARIANTS</b></h4>
+          <form></form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <hr>
+          <div id="res" class="alert"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+  <script type="text/javascript" src="deps/jquery.min.js"></script>
+  <script type="text/javascript" src="deps/underscore.js"></script>
+  <script type="text/javascript" src="deps/opt/jsv.js"></script>
+  <script type="text/javascript" src="lib/jsonform.js"></script>
+  <script type="text/javascript">
+    $('form').jsonForm({
+      schema: {
+        variant: {
+            type: "radios",
+            title: "All variant integration is completed ?",
+            enum: [ "Yes", "No" ]
+        },
+        variant_name: {
+          type: 'string',
+          title: 'Provide the variant name List',
+          enum: [ "First", "Second", "Third", "Fourth" ]
+        },
+        numberof_variant_added: {
+          type: 'number',
+          title: 'please specify the number of variants Added'
+        },
+        nameof_top_variant: {
+          type: 'string',
+          title: 'please specify the name of top variant',
+          enum: [ "First Variant", "Second Variant", "Third Variant", "Fourth Variant" ]
+        },
+        variant_features: {
+          type: 'string',
+          title: 'please specify the name of variants which has features',
+          enum: [ "First", "Second", "Third", "Fourth" ]
+        },
+        variant_check: {
+          type: 'string',
+          title: 'Checked all Variants on Preview Link ?',
+          enum: [ "Yes", "No" ]
+        },
+        seating_type: {
+          type: 'string',
+          title: 'Select model seating type',
+          enum: [ "5 Seater", "7 Seater", "Both" ]
+        }
+      },
+      form: [
+    {
+      key: "variant",
+      type: "radios"
+    },
+    {
+      key: "variant_name",
+      type: "select"
+    },
+    {
+      key: "numberof_variant_added",
+      type: "number"
+    },
+    {
+      key: "nameof_top_variant",
+      type: "select"
+    },
+    {
+      key: "variant_features",
+      type: "select"
+    },
+    {
+      key: "variant_check",
+      type: "radios"
+    },
+    {
+      key: "seating_type",
+      type: "radios"
+    },
+    {
+      type: "submit",
+      title: "Submit Your Response"
+    }    
+
+
+  ],
+      onSubmit: function (errors, values) {
+        if (errors) {
+          $('#res').html('<p>I beg your pardon?</p>');
+        } else {
+          $('#res').html('<p><b>Variant</b> -' + values.variant + '.' +
+            (values.variant_name ? '<br/><b>Variant Name</b> -' + values.variant_name + '.' : '') +
+            (values.numberof_variant_added ? '<br/><b>Number of variant Added</b> -' + values.numberof_variant_added + '.' : '') +
+            (values.nameof_top_variant ? '<br/><b>Name of top variant</b> -' + values.nameof_top_variant + '.' : '') +
+            (values.variant_features ? '<br/><b>Variant Feature</b> -' + values.variant_features + '.' : '') +
+            (values.variant_check ? '<br/><b>Variant Checked</b> -' + values.variant_check + '.' : '') +
+            (values.seating_type ? '<br/><b>Seating Type</b> -' + values.seating_type + '.' : '') +
+            '</p>');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
