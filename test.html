@@ -40,12 +40,11 @@
         "all_variant_check": {
             "type": "string",
             "title": "All variant integration is completed ?",
-            "enum": [ "Yes", "No" ],
         },
         "variant_name": {
           "type": 'string',
           "title": 'Provide the variant name List',
-          "enum": [ "First", "Second", "Third", "Fourth" ]
+          "description": "Enter variant name",
         },
         "numberof_variant_added": {
           "type": 'number',
@@ -54,12 +53,12 @@
         "nameof_top_variant": {
           "type": 'string',
           "title": 'Please specify the name of top variant',
-          "enum": [ "First Variant", "Second Variant", "Third Variant", "Fourth Variant" ]
+          "description": "Enter top variant",
         },
         "variant_features": {
           "type": 'string',
           "title": 'Please specify the name of variants which has features',
-          "enum": [ "First", "Second", "Third", "Fourth" ]
+          "description": "Enter variant features",
         },
         "variant_check": {
           "type": 'string',
@@ -128,11 +127,50 @@
                   "items":[
                     {  
                       "key":"all_variant_check",
-                      "type":"radios",
+                      "type":"questions",
+                      "items": [
+        {
+          "type": "question",
+          "title": "All variant",
+          "activeClass": "btn-success",
+          "optionsType": "radiobuttons",
+          "options": [
+            {
+              "title": "Yes",
+              "value": "happy",
+              "next": "q2",
+              "htmlClass": "btn-primary"
+            },
+            {
+              "title": "No",
+              "value": "sad",
+              "submit": true
+            }
+          ]
+        },
+        {
+          "type": "question",
+          "qid": "q2",
+          "title": "Really happy?",
+          "options": [
+            {
+              "title": "Yes",
+              "value": "reallyhappy",
+              "submit": true
+            },
+            {
+              "title": "No",
+              "value": "happy",
+              "submit": true
+            }
+          ]
+        }
+      ]
+
                     },
                     {  
                       "key":"variant_name",
-                      "type":"select"
+                      "type":"text"
                     },
                     {  
                       "key":"numberof_variant_added",
@@ -140,11 +178,11 @@
                     },
                     {  
                       "key":"nameof_top_variant",
-                      "type":"select"
+                      "type":"text"
                     },
                     {  
                       "key":"variant_features",
-                      "type":"select"
+                      "type":"text"
                     },
                     {  
                       "key":"variant_check",
