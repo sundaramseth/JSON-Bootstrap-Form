@@ -219,6 +219,12 @@
           "type": 'string',
           "title": 'All mesh are compressed ',
           "enum": [ "Yes", "No" ]
+        },
+        //TEXTURES
+        "all_texture": {
+            "type": "string",
+            "title": "All the texture is power of Two",
+            "enum": [ "Yes", "No" ]
         }
       },
       "form": [
@@ -474,6 +480,17 @@
                     },
                     {  
                       "key":"mesh_compressed",
+                      "type":"radios",
+                    }
+                  ]
+                },
+                //TEXTURES
+                     {
+                  "title":"MESH",
+                  "type":"tab",
+                  "items":[
+                    {  
+                      "key":"all_texture",
                       "type":"radios",
                     }
                   ]
